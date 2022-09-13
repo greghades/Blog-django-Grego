@@ -1,0 +1,23 @@
+{% extends 'layout.html' %}
+
+
+{% block title %}
+{{article.title}}
+{% endblock title %}
+
+{% block content %}
+    <a href="#"><h1>{{article.title}}</h1></a>
+    <p>{{article.create_at}}</p>
+    <p>Autor: {{article.user.first_name}} {{article.user.last_name}}</p>
+    {% for category in article.categories.all %}
+        /<a href=" {% url 'category' category.id %}">{{category}} </a>
+    {% endfor %}
+
+    {% if article.image != 'null' and article.image.url|length >= 1 %}
+            <img src="{{ article.image.url }}" width="255" height="200" alt="{{ article.image }}">
+        {% endif %}
+{{article.content|safe}}
+
+{% endblock content %}
+
+

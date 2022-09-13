@@ -1,0 +1,14 @@
+{% extends 'layout.html' %}
+{%block tittle%}
+{{tittle}}
+{%endblock%}
+{%block content%}
+    <h1 class="tittle">Prueba de Indice</h1>
+    <h3>La variable es: {{mi_variable}} </h3>
+    {% if nombre %}
+        <h4>Autor:{{nombre}} </h4>
+    {% else %}
+        <h4>El autor no se encuentra</h4>
+    {% endif %}
+
+{%endblock%}

@@ -1,0 +1,9 @@
+{% extends 'layout.html' %}
+{%block tittle%}
+Categoria {{category.name}}
+{%endblock%}
+{%block content%}
+    <h1>{{category.name}}</h1>
+    <p>{{category.description}}</p>
+    {% include 'articles/articles.html' %}
+{%endblock%}
