@@ -1,5 +1,11 @@
 {% extends 'layout.html' %}
 {%block tittle%}Bienvenido{%endblock%}
 {% block content %}
-    <h2>Bienvenido {{nombre}} </h2>
+    {% if messages %}
+        {% for message in messages %}
+            <h4>{{message}}</h4>
+        {% endfor %}
+    {% endif %}
+    <h2>Bienvenido {{user.first_name}} {{user.last_name}} </h2>
+    <h4>{{user.email}} </h4>
 {% endblock  %}
