@@ -1,0 +1,18 @@
+{% extends 'layout.html' %}
+
+
+{% block title %}
+{{article.title}}
+{% endblock title %}
+
+{% block content %}
+    <form action="" method='POST'>
+        {% csrf_token %}
+        {{articleForm.errors}}
+        {{articleForm}}
+        <button type="submit">Crear Articulo</button>
+    </form>
+
+{% endblock content %}
+
+

@@ -1,7 +1,9 @@
 from contextlib import ContextDecorator
+from email.mime import image
 from multiprocessing import context
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from .models import Article,Category
+from .forms import ArticleForm
 from django.contrib.auth.decorators import login_required
 # Create your views here.
 @login_required(login_url='login')
@@ -30,3 +32,21 @@ def article(request,idArticle):
         'article':article,
     }
     return render(request,'articles/article.html',context)
+
+@login_required(login_url='login')
+def createArticle(request):
+    articleForm = ArticleForm()
+   
+    if request.method == 'POST':
+        
+        articleForm = ArticleForm(request.POST, request.FILES)
+        if articleForm.is_valid(): 
+            obj = articleForm.save(commit=False)
+            print(obj.image)
+            obj.user_id = request.user.id
+            obj.save()
+        return redirect('articles')
+    context = {
+        'articleForm':articleForm,
+    }
+    return render(request,'articles/articleForm.html',context)
